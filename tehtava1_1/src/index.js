@@ -2,25 +2,30 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 const App = () => {
-    const kurssi = 'Half Stack -sovelluskehitys'
-    const osa1 = {
-        nimi: 'Reactin perusteet',
-        tehtavia: 10
+    const kurssi = {
+        nimi: 'Half Stack -sovelluskehitys',
+        osat: [
+          {
+            nimi: 'Reactin perusteet',
+            tehtavia: 10
+          },
+          {
+            nimi: 'Tiedonvälitys propseilla',
+            tehtavia: 7
+          },
+          {
+            nimi: 'Komponenttien tila',
+            tehtavia: 14
+          }
+        ]
     }
-    const osa2 = {
-        nimi: 'Tiedonvälitys propseilla',
-        tehtavia: 7
-    }
-    const osa3 = {
-        nimi: 'Komponenttien tila',
-        tehtavia: 14
-    }
+
 
     return (
         <div>
             <Otsikko kurssi={kurssi} />
-            <Sisalto osa1={osa1} osa2={osa2} osa3={osa3} />
-            <Yhteensa osa1={osa1} osa2={osa2} osa3={osa3} />
+            <Sisalto osat={kurssi.osat} />
+            <Yhteensa osat={kurssi.osat} />
         </div>
     )
 }
@@ -28,7 +33,7 @@ const App = () => {
 const Otsikko = (props) => {
     return (
         <div>
-            <h1> {props.kurssi} </h1>
+            <h1>{props.kurssi.nimi}</h1>
         </div>
     )
 }
@@ -36,9 +41,11 @@ const Otsikko = (props) => {
 const Sisalto = (props) => {
     return (
         <div>
-            <Osa osa={props.osa1} />
-            <Osa osa={props.osa2} />
-            <Osa osa={props.osa3} />
+            <Osa osa={props.osat[0]} />
+            <Osa osa={props.osat[1]} />
+            <Osa osa={props.osat[2]} />
+
+            
         </div>
     )
 }
@@ -46,7 +53,7 @@ const Sisalto = (props) => {
 const Osa = (props) => {
     return (
         <div>
-            <p> {props.osa.nimi} {props.osa.tehtavia} </p>
+            <p>{props.osa.nimi} {props.osa.tehtavia}</p>
         </div>
 
     )
@@ -55,8 +62,8 @@ const Osa = (props) => {
 const Yhteensa = (props) => {
     return (
         <div>
-            <p>Yhteensä {props.osa1.tehtavia + props.osa2.tehtavia + props.osa3.tehtavia}
-                tehtävää </p>
+            <p>Yhteensä {props.osat[0].tehtavia + props.osat[0].tehtavia
+                 + props.osat[0].tehtavia} tehtävää </p>
         </div>
     )
 
