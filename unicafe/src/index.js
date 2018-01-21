@@ -47,14 +47,21 @@ class App extends React.Component {
         this.setState({huono : this.state.huono + 1})
     }
    
+    plus = (palaute) => {
+        
+        console.log(palaute)
+        return () => {
+          this.setState({[palaute] : this.state[palaute] + 1 }) 
+        }
+      }
 
     render() {
         return (
             <div>
             <h1>anna palautetta</h1>
-            <Button text='hyvä' handleClick={this.lisaaHyva} />
-            <Button text='neutraali' handleClick={this.lisaaNeutraali} />
-            <Button text='huono' handleClick={this.lisaaHuono} />   
+            <Button text='hyvä' handleClick={this.plus('hyva')} />
+            <Button text='neutraali' handleClick={this.plus('neutraali')} />
+            <Button text='huono' handleClick={this.plus('huono')} />              
 
             <p>hyvä {this.state.hyva}</p>
             <p>neutraali {this.state.neutraali}</p>
