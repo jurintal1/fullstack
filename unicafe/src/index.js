@@ -32,6 +32,11 @@ class App extends React.Component {
             <p>hyvä {this.state.hyva}</p>
             <p>neutraali {this.state.neutraali}</p>
             <p>huono {this.state.huono}</p>
+            
+            <p>keskiarvo {(this.state.hyva - this.state.huono) / 
+                (this.state.huono + this.state.neutraali + this.state.hyva)} </p>
+            <p>positiivisia {this.state.hyva * 100 / (this.state.hyva + this.state.huono + this.state.neutraali)}%</p>
+
             </div>
         )
     }
