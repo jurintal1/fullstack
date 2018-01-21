@@ -7,12 +7,22 @@ const Button = ({ handleClick, text }) => (
     </button>
   )
 
-const Statistics = ({hyva, neutraali, huono}) => (
-    <div>
-        <p>keskiarvo {(hyva - huono) / (huono + neutraali + hyva)} </p>
-        <p>positiivisia {hyva * 100 / (hyva + huono + neutraali)}%</p>
-    </div>
-)
+const Statistics = ({hyva, neutraali, huono}) => {
+    if (hyva + neutraali + huono === 0) {
+        return (
+            <p>Palautetta ei ole vielä tullut.</p>
+        )
+    }
+    return (
+        <div>
+            <p>keskiarvo {(hyva - huono) / (huono + neutraali + hyva)} </p>
+            <p>positiivisia {hyva * 100 / (hyva + huono + neutraali)}%</p>
+        </div>
+    )
+    
+}
+
+
 
 
 class App extends React.Component {
@@ -44,14 +54,13 @@ class App extends React.Component {
             <h1>anna palautetta</h1>
             <Button text='hyvä' handleClick={this.lisaaHyva} />
             <Button text='neutraali' handleClick={this.lisaaNeutraali} />
-            <Button text='huono' handleClick={this.lisaaHuono} />
-            
+            <Button text='huono' handleClick={this.lisaaHuono} />   
 
-            <h1>statistiikka</h1>
-            
             <p>hyvä {this.state.hyva}</p>
             <p>neutraali {this.state.neutraali}</p>
             <p>huono {this.state.huono}</p>
+
+            <h1>statistiikka</h1>
 
             <Statistics hyva={this.state.hyva} neutraali={this.state.neutraali} huono={this.state.huono} />
             
