@@ -52,20 +52,9 @@ class App extends React.Component {
         }
     }
 
-    lisaaHyva = () => {
-        this.setState({ hyva: this.state.hyva + 1 })
-    }
-
-    lisaaNeutraali = () => {
-        this.setState({ neutraali: this.state.neutraali + 1 })
-    }
-
-    lisaaHuono = () => {
-        this.setState({ huono: this.state.huono + 1 })
-    }
+    
 
     plus = (palaute) => {
-
         console.log(palaute)
         return () => {
             this.setState({ [palaute]: this.state[palaute] + 1 })
