@@ -9,10 +9,18 @@ class App extends React.Component {
         }
     }
 
+    
+
+    newNumber = (numero) => () => this.setState({selected : Math.floor(Math.random() * numero)})
+
     render() {
         return (
             <div>
                 {this.props.anecdotes[this.state.selected]}
+                <br />            
+                <button onClick={this.newNumber(this.props.anecdotes.length)}>
+                    more wisdom
+                </button>
             </div>
         )
     }
