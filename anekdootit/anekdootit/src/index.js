@@ -4,20 +4,35 @@ import ReactDOM from 'react-dom'
 class App extends React.Component {
     constructor(props) {
         super(props)
+        const initVotes = new Array(this.props.anecdotes.length)
+        initVotes.fill(0)
         this.state = {
-            selected: 0
+            selected: 0,
+            votes: initVotes
         }
+        
+        
     }
 
-    
 
-    newNumber = (numero) => () => this.setState({selected : Math.floor(Math.random() * numero)})
+
+    newNumber = (numero) => () => this.setState({ selected: Math.floor(Math.random() * numero) })
+
+    vote = () => () => {
+        const newVotes = this.state.votes
+        newVotes[this.state.selected] = newVotes[this.state.selected] + 1
+        this.setState({ votes: newVotes })
+    }
+
 
     render() {
         return (
             <div>
                 {this.props.anecdotes[this.state.selected]}
-                <br />            
+                <br />
+                <button onClick={this.vote()}>
+                    vote
+                </button>
                 <button onClick={this.newNumber(this.props.anecdotes.length)}>
                     more wisdom
                 </button>
