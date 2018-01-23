@@ -10,8 +10,7 @@ class App extends React.Component {
             selected: 0,
             votes: initVotes
         }
-        
-        
+
     }
 
 
@@ -24,18 +23,24 @@ class App extends React.Component {
         this.setState({ votes: newVotes })
     }
 
-
     render() {
         return (
             <div>
-                {this.props.anecdotes[this.state.selected]}
-                <br />
-                <button onClick={this.vote()}>
-                    vote
+                <p>
+                    {this.props.anecdotes[this.state.selected]}
+                </p>
+                <p>
+                    <button onClick={this.vote()}>
+                        vote
                 </button>
-                <button onClick={this.newNumber(this.props.anecdotes.length)}>
-                    more wisdom
+                    <button onClick={this.newNumber(this.props.anecdotes.length)}>
+                        more wisdom
                 </button>
+                </p>
+                <h3>
+                    the piece of atk wisdom most popular:
+                </h3>
+                <p>{this.props.anecdotes[this.state.votes.indexOf(Math.max(...this.state.votes))]}</p>
             </div>
         )
     }
